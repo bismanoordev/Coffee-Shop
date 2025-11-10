@@ -2,6 +2,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useEffect } from "react";
 
 const coffees = [
   { img: "/coffee1.png", title: "Lungo Coffee", price: "Rs. 200" },
@@ -15,6 +16,13 @@ const coffees = [
 ];
 
 const Page = () => {
+   useEffect(() => {
+    // 🔥 Force Slick to re-check viewport size
+    setTimeout(() => {
+      window.dispatchEvent(new Event("resize"));
+    }, 500);
+  }, []);
+
   const settings = {
     slidesToShow: 4,
     slidesToScroll: 1,
