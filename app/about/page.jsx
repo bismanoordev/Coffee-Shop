@@ -16,11 +16,11 @@ const coffees = [
 ];
 
 const Page = () => {
-   useEffect(() => {
-    // 🔥 Force Slick to re-check viewport size
-    setTimeout(() => {
+  useEffect(() => {
+    const handle = setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
-    }, 500);
+    }, 1000);
+    return () => clearTimeout(handle);
   }, []);
 
   const settings = {
