@@ -2,20 +2,16 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useEffect } from "react";
-
-const coffees = [
-  { img: "/coffee1.png", title: "Lungo Coffee", price: "Rs. 200" },
-  { img: "/coffee2.png", title: "Espresso", price: "Rs. 250" },
-  { img: "/coffee3.png", title: "Cappuccino", price: "Rs. 300" },
-  { img: "/coffee4.png", title: "Latte", price: "Rs. 280" },
-  { img: "/coffee5.png", title: "Mocha", price: "Rs. 350" },
-  { img: "/coffee6.png", title: "Americano", price: "Rs. 220" },
-  { img: "/coffee7.png", title: "Flat White", price: "Rs. 270" },
-  { img: "/coffee8.png", title: "Macchiato", price: "Rs. 300" },
-];
+import { useEffect, useState } from "react";
+import { coffees } from "@/app/data/coffees";
+import OrderModal from "@/components/OrderModal";
 
 const Page = () => {
+  const [selectedCoffee, setSelectedCoffee] = useState(null);
+
+  const openForm = (coffee) => setSelectedCoffee(coffee);
+  const closeForm = () => setSelectedCoffee(null);
+
   useEffect(() => {
     const handle = setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
@@ -101,7 +97,10 @@ const Page = () => {
                       <p className="font-bold text-[#2b2015] text-sm sm:text-base">
                         {coffee.price}
                       </p>
-                      <button className="bg-[#2A0000] text-white text-xs sm:text-sm md:text-base px-3 sm:px-4 py-1.5 rounded-md hover:bg-[#4a2a1c] transition">
+                      <button
+                        onClick={() => openForm(coffee)}
+                        className="bg-[#2A0000] text-white text-xs sm:text-sm md:text-base px-3 sm:px-4 py-1.5 rounded-md hover:bg-[#4a2a1c] transition"
+                      >
                         Order Now
                       </button>
                     </div>
@@ -112,6 +111,9 @@ const Page = () => {
           </Slider>
         </div>
       </section>
+
+      {/* Order Modal (shared) */}
+      <OrderModal coffee={selectedCoffee} onClose={closeForm} />
     </div>
   );
 };

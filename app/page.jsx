@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import About from "@/app/about/page";
@@ -7,8 +7,11 @@ import Contact from "@/app/contact/page";
 import CoffeeBanner from "./coffeebanner/page";
 import Iconsbar from "./iconsbar/page";
 import Join from "./join/page";
+import ProductsModal from "@/components/ProductsModal";
 
 const Page = () => {
+  const [showProducts, setShowProducts] = useState(false);
+
   return (
     <>
       <div>
@@ -31,7 +34,10 @@ const Page = () => {
                 Lorem ipsum dolor sit amet, consectetur adipisicing <br className="hidden sm:block" /> elit,
                 sed do eiusmod tempor
               </p>
-              <button className="bg-gray-200 text-[#493827] font-bold px-5 py-2 sm:px-6 sm:py-3 mt-8 sm:mt-10 rounded-full hover:bg-[#8f5235] hover:text-white transition-colors duration-300">
+              <button
+                onClick={() => setShowProducts(true)}
+                className="bg-gray-200 text-[#493827] font-bold px-5 py-2 sm:px-6 sm:py-3 mt-8 sm:mt-10 rounded-full hover:bg-[#8f5235] hover:text-white transition-colors duration-300"
+              >
                 Order Now
               </button>
             </div>
@@ -46,6 +52,12 @@ const Page = () => {
         <Contact />
         <Footer />
       </div>
+
+      {/* Products list + order form (shared), opened by the hero "Order Now" */}
+      <ProductsModal
+        open={showProducts}
+        onClose={() => setShowProducts(false)}
+      />
     </>
   );
 };

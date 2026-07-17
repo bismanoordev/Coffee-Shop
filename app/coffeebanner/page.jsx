@@ -1,9 +1,12 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import ProductsModal from "@/components/ProductsModal";
 
 const CoffeeBanner = () => {
+  const [showProducts, setShowProducts] = useState(false);
+
   return (
     <div
       id="banner"
@@ -14,7 +17,10 @@ const CoffeeBanner = () => {
         <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#2b1e18] leading-snug">
           Check Out Our Best <br /> Coffee Beans
         </h2>
-        <button className="mt-5 bg-[#30261C] text-white px-4 sm:px-6 py-2 rounded-full flex items-center gap-2 hover:bg-[#3b2b23] transition-all mx-auto md:mx-0">
+        <button
+          onClick={() => setShowProducts(true)}
+          className="mt-5 bg-[#30261C] text-white px-4 sm:px-6 py-2 rounded-full flex items-center gap-2 hover:bg-[#3b2b23] transition-all mx-auto md:mx-0"
+        >
           Explore Our Products <ArrowRight size={18} />
         </button>
       </div>
@@ -40,6 +46,12 @@ const CoffeeBanner = () => {
           className="object-contain md:w-[250px] lg:w-[300px] xl:w-[350px]"
         />
       </div>
+
+      {/* Products list + order form (shared) */}
+      <ProductsModal
+        open={showProducts}
+        onClose={() => setShowProducts(false)}
+      />
     </div>
   );
 };

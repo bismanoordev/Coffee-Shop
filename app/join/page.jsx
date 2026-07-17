@@ -101,20 +101,11 @@ export default function Join() {
             </button>
 
             {/* Cards Grid */}
-            <div
-              className="
-                flex justify-center overflow-hidden gap-4 sm:gap-6 md:gap-8 w-full
-                flex-wrap sm:flex-nowrap
-              "
-            >
+            <div className="flex justify-center gap-4 sm:gap-6 md:gap-8 w-full flex-wrap xl:flex-nowrap">
               {visibleTestimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
-                  className="
-                    bg-white rounded-lg p-5 sm:p-6 shadow-sm hover:shadow-md 
-                    transition-shadow flex-1 min-w-[260px] sm:min-w-[280px] md:min-w-[300px] 
-                    max-w-[340px]
-                  "
+                  className="bg-white rounded-lg p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow flex-1 min-w-[240px] sm:min-w-[260px] max-w-[340px]"
                 >
                   {/* Avatar + Info */}
                   <div className="flex items-start gap-4 mb-4">
